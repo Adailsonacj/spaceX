@@ -13,6 +13,7 @@ public class CenaMenu extends AGScene {
     AGSprite play = null;
     AGSprite duvida = null;
     AGSprite sair = null;
+    int i = 0;
 
     public CenaMenu(AGGameManager gameManager) {
         super(gameManager);
@@ -21,21 +22,21 @@ public class CenaMenu extends AGScene {
     @Override
     public void init() {
 
-        menu = createSprite(R.mipmap.spacex, 1, 1);
+        menu = createSprite(R.mipmap.spacexx, 1, 1);
         menu.setScreenPercent(80, 20);
-        menu.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 + 800);
+        menu.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 + 700);
 
         play = createSprite(R.mipmap.play, 1, 1);
         play.setScreenPercent(15, 13);
-        play.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 + 350);
+        play.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 + 400);
 
-        duvida = createSprite(R.mipmap.question, 1, 1);
+        duvida = createSprite(R.mipmap.ask, 1, 1);
         duvida.setScreenPercent(15, 13);
-        duvida.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2);
+        duvida.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2-50);
 
-        sair = createSprite(R.mipmap.sair, 1, 1);
+        sair = createSprite(R.mipmap.exit, 1, 1);
         sair.setScreenPercent(15, 13);
-        sair.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 - 350);
+        sair.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 - 450);
         setSceneBackgroundColor(1, 1, 1);
 
     }
