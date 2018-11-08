@@ -8,6 +8,7 @@ public class MainActivity extends AGActivityGame {
     private CenaAbertura abertura = null;
     private CenaMenu menu = null;
     private CenaCreditos creditos = null;
+    private CenaGame game = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,12 @@ public class MainActivity extends AGActivityGame {
         abertura = new CenaAbertura(getGameManager());
         menu = new CenaMenu(getGameManager());
         creditos = new CenaCreditos(getGameManager());
+        game = new CenaGame(getGameManager());
 
         getGameManager().addScene(abertura);
         getGameManager().addScene(menu);
         getGameManager().addScene(creditos);
+        getGameManager().addScene(game);
 
     }
 }

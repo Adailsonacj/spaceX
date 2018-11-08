@@ -24,7 +24,6 @@ public class CenaAbertura extends AGScene {
         //Chamado toda vez que a cena for ativada
         //sempre que a cena for exibida
 
-
         tempo = new AGTimer(3000);
 
         spacex = createSprite(R.mipmap.spacex,1,1);

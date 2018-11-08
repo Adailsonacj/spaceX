@@ -4,16 +4,17 @@ import com.example.adailson.spacex.AndGraph.AGGameManager;
 import com.example.adailson.spacex.AndGraph.AGInputManager;
 import com.example.adailson.spacex.AndGraph.AGScene;
 import com.example.adailson.spacex.AndGraph.AGScreenManager;
+import com.example.adailson.spacex.AndGraph.AGSoundManager;
 import com.example.adailson.spacex.AndGraph.AGSprite;
-import com.example.adailson.spacex.AndGraph.AGTimer;
 
 public class CenaMenu extends AGScene {
 
-    AGSprite menu = null;
-    AGSprite play = null;
-    AGSprite duvida = null;
-    AGSprite sair = null;
-    int i = 0;
+    private AGSprite menu = null;
+    private AGSprite play = null;
+    private AGSprite duvida = null;
+    private AGSprite sair = null;
+    private int i = 0;
+    private int codSom;
 
     public CenaMenu(AGGameManager gameManager) {
         super(gameManager);
@@ -32,13 +33,17 @@ public class CenaMenu extends AGScene {
 
         duvida = createSprite(R.mipmap.ask, 1, 1);
         duvida.setScreenPercent(15, 13);
-        duvida.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2-50);
+        duvida.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 - 50);
 
         sair = createSprite(R.mipmap.exit, 1, 1);
         sair.setScreenPercent(15, 13);
         sair.vrPosition.setXY(AGScreenManager.iScreenWidth / 2, AGScreenManager.iScreenHeight / 2 - 450);
         setSceneBackgroundColor(1, 1, 1);
 
+        AGSoundManager.vrMusic.loadMusic("musica.mp3", true);
+        AGSoundManager.vrMusic.play();
+
+        codSom = AGSoundManager.vrSoundEffects.loadSoundEffect("toc.wav");
     }
 
     @Override
@@ -54,8 +59,24 @@ public class CenaMenu extends AGScene {
     @Override
     public void loop() {
 
-        if (AGInputManager.vrTouchEvents.screenClicked()) {
-            vrGameManager.setCurrentScene(2);
+        //Verifca se a tela foi clicada
+        if(AGInputManager.vrTouchEvents.screenClicked()){
+            if(play.collide(AGInputManager.vrTouchEvents.getLastPosition())){
+                AGSoundManager.vrSoundEffects.play(codSom);
+                vrGameManager.setCurrentScene(3);
+
+                return;
+            }
+            if(duvida.collide(AGInputManager.vrTouchEvents.getLastPosition())){
+                AGSoundManager.vrSoundEffects.play(codSom);
+                vrGameManager.setCurrentScene(2);
+                return;
+            }
+            if(sair.collide(AGInputManager.vrTouchEvents.getLastPosition())){
+                AGSoundManager.vrSoundEffects.play(codSom);
+                vrGameManager.vrActivity.finish();
+                return;
+            }
         }
     }
 }
